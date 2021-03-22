@@ -20,16 +20,7 @@ namespace RSVP
                 GuestResponse rsvp = new GuestResponse(name.Text, email.Text, phone.Text, CheckBoxYN.Checked);
                 ResponseRepository.GetRepository().AddResponse(rsvp);
 
-                try
-                {
-                    SampleContext context = new SampleContext();
-                    context.GuestResponses.Add(rsvp);
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    Response.Redirect("Ошибка " + ex.Message);
-                }
+                
                 if (CheckBoxYN.Checked)
                 {
                     Report report1 = new Report(TextBoxTitle.Text, TextBoxAnot.Text);
@@ -40,7 +31,15 @@ namespace RSVP
                     Report report2 = new Report(TextBoxTitle2.Text, TextBoxTextAnnot2.Text);
                     rsvp.Reports.Add(report2);
                 }
-
+                try 
+                {   SampleContext context = new SampleContext(); 
+                    context.GuestResponses.Add(rsvp); // ошибка возникает в этой строке
+                    context.SaveChanges(); 
+                } 
+                catch (Exception ex) 
+                {
+                    Response.Redirect("Ошибка " + ex.Message);
+                }
                 if (rsvp.WillAttend.HasValue && rsvp.WillAttend.Value)
                 {
                     Response.Redirect("seeyouthere.html");

@@ -9,7 +9,7 @@ namespace RSVP
 
         public class SampleContext : DbContext
         {
-            public SampleContext() : base("name=SeminarBD") 
+            public SampleContext() : base("SeminarBD") 
             { 
             }
             public DbSet<GuestResponse> GuestResponses { get; set; }

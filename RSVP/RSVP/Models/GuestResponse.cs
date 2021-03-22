@@ -8,8 +8,9 @@ namespace RSVP
 {
     public class GuestResponse
     {
+
         static int i = 1;
-        public int GuestResponseIdId { get; set; }
+        public int GuestResponseId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
@@ -18,7 +19,8 @@ namespace RSVP
         public GuestResponse() { }
         public GuestResponse(string name, string email, string phone, bool? willattend)
         {
-            GuestResponseIdId = i++;
+
+            GuestResponseId = i++;
             Name = name;
             Email = email;
             Phone = phone;
@@ -31,13 +33,14 @@ namespace RSVP
     }
     public class Report
     {
-        public int ReportId { get; set; }
+        public int ReportId { get; set; } = 0;
         public string NameReport { get; set; }
         public string Annotation { get; set; }
         public GuestResponse GuestRes { get; set; }
         public Report() { }
         public Report(string title, string annot)
         {
+            ReportId = ReportId++;
             NameReport = title;
             Annotation = annot;
         }
